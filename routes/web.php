@@ -48,4 +48,7 @@ Route::get('/nome/{nome}/{idade}/{apelido?}', function($nome, $idade, $apelido =
 //rota retornando uma view com parametros opcionais
 Route::get('/nome1/{nome}/{idade}/{apelido?}', [Main::class, 'nome1']);
 
-
+// named routes
+Route::get('/home', [Main::class, 'home'])->name('home');
+Route::get('/services', [Main::class, 'services'])->name('services');
+Route::get('/contacts', [Main::class, 'contacts'])->name('contacts');
