@@ -45,4 +45,7 @@ Route::get('/nome/{nome}/{idade}/{apelido?}', function($nome, $idade, $apelido =
     echo "Nome: $nome $apelido | Idade: $idade";
 });
 
+//rota retornando uma view com parametros opcionais
+Route::get('/nome1/{nome}/{idade}/{apelido?}', [Main::class, 'nome1']);
+
 
