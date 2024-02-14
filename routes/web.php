@@ -12,43 +12,76 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// rota retornando a view
+// route returning a view
 Route::get('/', function () {
     return view('welcome');
 });
 
-// chamada da classe main
+// main class call
 use App\Http\Controllers\Main;
  
-//rota chamando a função index da classe main
+// route by calling the index function of the main class
 Route::get('/teste', [Main::class, 'index']);
 
-//rota com a função declarada diretamente
+// route with the function declared directly
 Route::get('/user1/{nome}', function($n){
     echo "Nome em user1: $n";
 });
 
-// rota com função declarada diretamente e parametros
+// route with the function declared directly and parameters
 Route::get('/user2/{nome}/{apelido}', function($n, $apelido){
     //echo 'Nome: ' . $n . ' ' . $apelido;
     echo "Nome em user2: $n $apelido";
 });
 
-// rota chamando a função user da classe main com parametros
+// route calling the user function of the main class with parameters
 Route::get('/user3/{nome}/{apelido}', [Main::class, 'user3']);
 
 // rota função e parametros retornando uma view
 Route::get('/user4/{nome}/{apelido}', [Main::class, 'user4']);
 
-//rota com parametro opcionais (parametro opcionais sempre com interrogação e no final da assinatura)
+//route with optional parameters
 Route::get('/nome/{nome}/{idade}/{apelido?}', function($nome, $idade, $apelido = ''){
     echo "Nome: $nome $apelido | Idade: $idade";
 });
 
-//rota retornando uma view com parametros opcionais
+// route returning a view with optional parameters
 Route::get('/nome1/{nome}/{idade}/{apelido?}', [Main::class, 'nome1']);
 
 // named routes
 Route::get('/home', [Main::class, 'home'])->name('home');
 Route::get('/services', [Main::class, 'services'])->name('services');
 Route::get('/contacts', [Main::class, 'contacts'])->name('contacts');
+
+// controller
+use App\Http\Controllers\Clientes;
+use App\Http\Controllers\Stock\Prod;
+
+use App\Http\Controllers\Produtos;
+
+Route::get('clientes', [Clientes::class, 'index']);
+Route::get('clientes_nomes', [Clientes::class, 'nomes']);
+Route::get('email', [Clientes::class, 'mostrar']);
+Route::get('produtos', [Prod::class, 'index']);
+
+// single action controller
+use App\Http\Controllers\Stats;
+Route::get('dados/{teste}', Stats::class);
+
+Route::get('cliente/{dado}/{index?}', [Clientes::class, 'cliente']);
+
+Route::resource('produto', Produtos::class);
+
+// views
+Route::view('ver', 'pagina');
+
+Route::view('vcliente', 'clientes.cliente');
+
+Route::get('ccliente/', [Clientes::class, 'pagina']);
+
+Route::get('inifim/', [Clientes::class, 'iniFim']);
+
+// pass data from controllers to views
+
+use App\Http\Controllers\Main2;
+Route::get('/home', [Main2::class, 'home']);
