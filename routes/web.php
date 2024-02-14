@@ -85,3 +85,4 @@ Route::get('inifim/', [Clientes::class, 'iniFim']);
 
 use App\Http\Controllers\Main2;
 Route::get('/home', [Main2::class, 'home']);
+Route::get('/home_teste', [Main2::class, 'teste'])->name('my_route');
