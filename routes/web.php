@@ -18,10 +18,9 @@ Route::get('/', function () {
 });
 
 // main class call
-use App\Http\Controllers\Main;
  
 // route by calling the index function of the main class
-Route::get('/teste', [Main::class, 'index']);
+Route::get('/teste', 'Main@index');
 
 // route with the function declared directly
 Route::get('/user1/{nome}', function($n){
@@ -35,10 +34,10 @@ Route::get('/user2/{nome}/{apelido}', function($n, $apelido){
 });
 
 // route calling the user function of the main class with parameters
-Route::get('/user3/{nome}/{apelido}', [Main::class, 'user3']);
+Route::get('/user3/{nome}/{apelido}', 'Main@user3');
 
 // rota função e parametros retornando uma view
-Route::get('/user4/{nome}/{apelido}', [Main::class, 'user4']);
+Route::get('/user4/{nome}/{apelido}', 'Main@user4');
 
 //route with optional parameters
 Route::get('/nome/{nome}/{idade}/{apelido?}', function($nome, $idade, $apelido = ''){
@@ -46,43 +45,41 @@ Route::get('/nome/{nome}/{idade}/{apelido?}', function($nome, $idade, $apelido =
 });
 
 // route returning a view with optional parameters
-Route::get('/nome1/{nome}/{idade}/{apelido?}', [Main::class, 'nome1']);
+Route::get('/nome1/{nome}/{idade}/{apelido?}', 'Main@nome1');
 
 // named routes
-Route::get('/home', [Main::class, 'home'])->name('home');
-Route::get('/services', [Main::class, 'services'])->name('services');
-Route::get('/contacts', [Main::class, 'contacts'])->name('contacts');
+Route::get('/home1', 'Main@home')->name('home');
+Route::get('/services', 'Main@services')->name('services');
+Route::get('/contacts', 'Main@contacts')->name('contacts');
 
 // controller
-use App\Http\Controllers\Clientes;
-use App\Http\Controllers\Stock\Prod;
 
-use App\Http\Controllers\Produtos;
-
-Route::get('clientes', [Clientes::class, 'index']);
-Route::get('clientes_nomes', [Clientes::class, 'nomes']);
-Route::get('email', [Clientes::class, 'mostrar']);
-Route::get('produtos', [Prod::class, 'index']);
+Route::get('clientes', 'Clientes@index');
+Route::get('clientes_nomes', 'Clientes@nomes');
+Route::get('email', 'Clientes@mostrar');
+Route::get('produtos', 'Stock\Prod@index');
 
 // single action controller
-use App\Http\Controllers\Stats;
-Route::get('dados/{teste}', Stats::class);
+Route::get('dados/{teste}', 'Stats');
 
-Route::get('cliente/{dado}/{index?}', [Clientes::class, 'cliente']);
+Route::get('cliente/{dado}/{index?}', 'Clientes@cliente');
 
-Route::resource('produto', Produtos::class);
+Route::resource('produto', 'Produtos');
 
 // views
 Route::view('ver', 'pagina');
 
 Route::view('vcliente', 'clientes.cliente');
 
-Route::get('ccliente/', [Clientes::class, 'pagina']);
+Route::get('ccliente/', 'Clientes@pagina');
 
-Route::get('inifim/', [Clientes::class, 'iniFim']);
+Route::get('inifim/', 'Clientes@iniFim');
 
 // pass data from controllers to views
 
-use App\Http\Controllers\Main2;
-Route::get('/home', [Main2::class, 'home']);
-Route::get('/home_teste', [Main2::class, 'teste'])->name('my_route');
+
+Route::get('/home', 'Main2@home');
+Route::get('/home_teste', 'Main2@teste')->name('my_route');
+
+// Databases
+Route::get('/DB', 'DB_Main@home');
