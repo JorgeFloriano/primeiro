@@ -82,4 +82,4 @@ Route::get('/home', 'Main2@home');
 Route::get('/home_teste', 'Main2@teste')->name('my_route');
 
 // Databases
-Route::get('/DB', 'DB_Main@home');
+Route::get('/ORM', 'ORM_Main@home');

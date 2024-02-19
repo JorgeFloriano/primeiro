@@ -56,4 +56,6 @@ class User extends Authenticatable
     public function getNames() {
         return DB::select("SELECT name FROM users");
     }
+    protected $table = 'users';
+    protected $primaryKey = 'id';
 }
