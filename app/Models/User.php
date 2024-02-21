@@ -56,6 +56,19 @@ class User extends Authenticatable
     public function getNames() {
         return DB::select("SELECT name FROM users");
     }
+
+    // Eloquent: Relationships-----------------------------
+    public function mobile() {
+        return $this->hasOne('App\Models\Mobile');
+    }
+
+    public function mobiles() {
+        return $this->hasMany('App\Models\Mobile');
+    }
+
+    public function disciplines() {
+        return $this->belongsToMany('App\Models\Discipline');
+    }
     protected $table = 'users';
     protected $primaryKey = 'id';
 }
