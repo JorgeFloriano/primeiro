@@ -50,5 +50,21 @@ class ER_Main extends Controller
         // foreach ($discipline->users as $user) {
         //     echo "$user->name <br>";
         // }
+
+        // Results two tables in one----------------------------
+        //$user = User::with('disciplines')->find(5);
+        //$res = $user->disciplines;
+        //dd($user);
+        // echo "<h3> $user->name </h3>";
+        // foreach ($user->disciplines as $discipline) {
+        //     echo "$discipline->description <br>";
+        // }
+        // echo '<hr>';
+
+        // $discipline = Discipline::with('users')->find(1);
+        // echo "<h3> $discipline->description </h3>";
+        // foreach ($discipline->users as $user) {
+        //     echo "$user->name <br>";
+        // }
     }
 }
